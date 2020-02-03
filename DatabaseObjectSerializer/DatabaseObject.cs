@@ -23,7 +23,7 @@ namespace DatabaseObjectSerializer
 
             foreach (FieldInfo field in type.GetFields())
             {
-                if (field.Name != "DBTable" && field.Name != "Id")
+                if (field.Name != "Id")
                 {
                     paramaters.Add(field.Name, field.GetValue(this));
                     Set += "[" + field.Name + "] = @" + field.Name + ", ";
@@ -45,7 +45,7 @@ namespace DatabaseObjectSerializer
 
             foreach (FieldInfo field in type.GetFields())
             {
-                if (field.Name != "DBTable" && field.Name != "Id")
+                if (field.Name != "Id")
                 {
                     paramaters.Add(field.Name, field.GetValue(this));
                     Values += "@"+field.Name + ", ";
