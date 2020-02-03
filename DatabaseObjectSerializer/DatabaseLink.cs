@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.OleDb;
-using System.Reflection;
 using System.Linq;
+using System.Reflection;
 
 namespace DatabaseObjectSerializer
 {
@@ -20,10 +20,11 @@ namespace DatabaseObjectSerializer
         {
             OleDbCommand command = new OleDbCommand(StrCommand, connection);
 
-            if (parameters != null) {
+            if (parameters != null)
+            {
                 foreach (string segment in StrCommand.Split(' ').Where(x => x.StartsWith("@")))
                 {
-                    string S = segment.Replace("@", "").Replace(";","").Replace(",","");
+                    string S = segment.Replace("@", "").Replace(";", "").Replace(",", "");
                     if (parameters.ContainsKey(S))
                     { command.Parameters.AddWithValue(S, parameters[S]); }
                 }
@@ -48,7 +49,7 @@ namespace DatabaseObjectSerializer
 
         public DatabaseLink(string DBFile)
         {
-            connection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source="+DBFile+";");
+            connection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + DBFile + ";");
             connection.Open();
         }
 

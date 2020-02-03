@@ -1,6 +1,4 @@
-﻿using DatabaseObjectConverter;
-using System.Collections.Generic;
-using System.Data.OleDb;
+﻿using DatabaseObjectSerializer;
 
 namespace TestApp
 {
@@ -11,13 +9,19 @@ namespace TestApp
         private static void Main(string[] args)
         {
             DatabaseLink database = new DatabaseLink("./Dbase.accdb");
-            User[] T = database.ExecuteRead<User>("select * from Users", typeof(User));
 
-            T[0].password = "AChmbfsdsffded";
-            T[1].password = "Chummadfsfdsfr";
+            User U = new User();
+            U.password = "fsfgsd";
+            U.username = "dfsfds";
+            U.Insert(database, "Users");
 
-            T[0].Update(database, "Users");
-            T[1].Update(database, "Users");
+            //User[] T = database.ExecuteRead<User>("select * from Users", typeof(User));
+            
+            //T[0].password = "AChmbfsdsffded";
+            //T[1].password = "Chummadfsfdsfr";
+
+            //T[0].Update(database, "Users");
+            //T[1].Update(database, "Users");
 
             //database.ExecuteCommand<User>("UPDATE Users SET passwrd = 'Moffo'", T[0]);
         }
